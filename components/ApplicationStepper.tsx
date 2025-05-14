@@ -80,7 +80,7 @@ const ApplicationStepper = () => {
             boxShadow="sm"
           >
             <VStack spacing={6} align="stretch">
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>
                   <Flex align="center">
                     <FaMapMarkerAlt color="#0066ff" />
@@ -105,12 +105,11 @@ const ApplicationStepper = () => {
               </FormControl>
               
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, md: 6 }}>
-                <FormControl isRequired>
-                  <FormLabel>
-                    <Flex align="center">
-                      <Icon as={FaCalendarAlt} color="brand.500" boxSize={5} />
-                      <Text ml={2} fontWeight="medium">Дата вылета</Text>
-                    </Flex>
+                <FormControl>
+                  <FormLabel display="flex" alignItems="center" mb={1}>
+                    <Icon as={FaCalendarAlt} color="brand.500" boxSize={5} />
+                    <Text ml={2} fontWeight="medium">Дата вылета</Text>
+                    <Text as="span" color="gray.500" ml={2} fontSize="xs" fontStyle="italic">(обязательно)</Text>
                   </FormLabel>
                   <InputGroup size="lg">
                     <InputLeftElement pointerEvents="none">
@@ -232,7 +231,7 @@ const ApplicationStepper = () => {
             boxShadow="sm"
           >
             <VStack spacing={6} align="stretch">
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>
                   <Flex align="center">
                     <FaUser color="#0066ff" />
@@ -253,7 +252,7 @@ const ApplicationStepper = () => {
                 </InputGroup>
               </FormControl>
               
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>
                   <Flex align="center">
                     <FaPhone color="#0066ff" />

@@ -1,4 +1,5 @@
 import { Box, Flex, HStack, Link, Button, Text, Container, Image, IconButton, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, VStack } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { FaUser, FaPhone, FaSearch, FaBars, FaMapMarkerAlt, FaFire, FaGlobe, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 
@@ -95,17 +96,40 @@ export default function Header() {
               >
                 Поиск
               </Button>
-              <Button 
-                leftIcon={<FaUser />} 
-                colorScheme="brand" 
-                variant="solid" 
-                size="sm"
-                display={{ base: "none", md: "flex" }}
-                _hover={{ transform: "translateY(-2px)", boxShadow: "md" }}
-                transition="all 0.2s"
-              >
-                Личный кабинет
-              </Button>
+              <Flex ml={4} display={{ base: "none", md: "flex" }}>
+                <Button 
+                  as={NextLink} 
+                  href="/login" 
+                  variant="outline" 
+                  colorScheme="brand" 
+                  mr={2} 
+                  size="sm"
+                >
+                  Вход
+                </Button>
+                <Button 
+                  as={NextLink} 
+                  href="/register" 
+                  variant="outline" 
+                  colorScheme="brand" 
+                  mr={2} 
+                  size="sm"
+                >
+                  Регистрация
+                </Button>
+                <Button
+                  as={NextLink}
+                  href="/profile"
+                  leftIcon={<FaUser />}
+                  colorScheme="brand"
+                  variant="solid"
+                  size="sm"
+                  _hover={{ transform: "translateY(-2px)", boxShadow: "md" }}
+                  transition="all 0.2s"
+                >
+                  Личный кабинет
+                </Button>
+              </Flex>
               
               {/* Мобильное меню */}
               <IconButton
@@ -140,17 +164,43 @@ export default function Header() {
               ))}
               
               <Box pt={4} mt={4} borderTopWidth="1px">
-                <Button 
-                  leftIcon={<FaUser />} 
-                  colorScheme="brand" 
-                  variant="solid" 
-                  size="sm"
-                  width="100%"
-                  _hover={{ transform: "translateY(-2px)", boxShadow: "md" }}
-                  transition="all 0.2s"
-                >
-                  Личный кабинет
-                </Button>
+                <VStack spacing={2} width="100%">
+                  <Button
+                    as={NextLink}
+                    href="/login"
+                    colorScheme="brand"
+                    variant="outline"
+                    size="sm"
+                    width="100%"
+                  >
+                    Вход
+                  </Button>
+                  
+                  <Button
+                    as={NextLink}
+                    href="/register"
+                    colorScheme="brand"
+                    variant="outline"
+                    size="sm"
+                    width="100%"
+                  >
+                    Регистрация
+                  </Button>
+                  
+                  <Button
+                    as={NextLink}
+                    href="/profile"
+                    leftIcon={<FaUser />}
+                    colorScheme="brand"
+                    variant="solid"
+                    size="sm"
+                    width="100%"
+                    _hover={{ transform: "translateY(-2px)", boxShadow: "md" }}
+                    transition="all 0.2s"
+                  >
+                    Личный кабинет
+                  </Button>
+                </VStack>
               </Box>
             </VStack>
           </DrawerBody>

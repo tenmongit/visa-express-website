@@ -6,7 +6,7 @@ const MotionBox = motion(Box);
 
 export default function Footer() {
   return (
-    <Box as="footer" bg="gray.50" borderTop="1px" borderColor="gray.200" mt={16}>
+    <Box as="footer" bg="#eaf1fb" borderTop="1px" borderColor="gray.200" mt={16}>
       {/* Основной контент футера */}
       <Box maxW="1400px" mx="auto" px={{ base: 4, md: 8 }} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8} mb={10}>
