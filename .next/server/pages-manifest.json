@@ -3,10 +3,8 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/tours": "pages/tours.js",
+  "/profile": "pages/profile.js",
   "/countries": "pages/countries.js",
   "/hot": "pages/hot.js",
-  "/contacts": "pages/contacts.js",
-  "/profile": "pages/profile.js",
-  "/login": "pages/login.js"
+  "/tours": "pages/tours.js"
 }

@@ -10,9 +10,9 @@ const MotionText = motion(Text);
 
 const hotTours = [
   { 
-    name: "Горящий тур в Турцию", 
-    destination: "Турция, Анталия",
-    img: "/images/turkey.jpg", 
+    name: "Горящий тур в Испанию", 
+    destination: "Испания, Барселона",
+    img: "/images/destinations/spain.jpg", 
     price: "250 000 ₸",
     oldPrice: "350 000 ₸",
     days: "7 дней / 6 ночей",
@@ -25,7 +25,7 @@ const hotTours = [
   { 
     name: "Срочное предложение: Египет", 
     destination: "Египет, Хургада",
-    img: "/images/egypt.jpg", 
+    img: "/images/destinations/egypt.jpg", 
     price: "290 000 ₸",
     oldPrice: "400 000 ₸",
     days: "10 дней / 9 ночей",
@@ -38,7 +38,7 @@ const hotTours = [
   { 
     name: "Горящие Эмираты", 
     destination: "ОАЭ, Дубай",
-    img: "/images/uae.jpg", 
+    img: "/images/destinations/uae.jpg", 
     price: "320 000 ₸",
     oldPrice: "415 000 ₸",
     days: "5 дней / 4 ночи",
@@ -51,7 +51,7 @@ const hotTours = [
   { 
     name: "Кипр: горящее предложение", 
     destination: "Кипр, Айя-Напа",
-    img: "/images/cyprus.jpg", 
+    img: "/images/destinations/cyprus.jpg", 
     price: "270 000 ₸",
     oldPrice: "375 000 ₸",
     days: "7 дней / 6 ночей",
@@ -64,7 +64,7 @@ const hotTours = [
   { 
     name: "Срочно: Греция", 
     destination: "Греция, о. Крит",
-    img: "/images/greece.jpg", 
+    img: "/images/destinations/greece.jpg", 
     price: "300 000 ₸",
     oldPrice: "390 000 ₸",
     days: "7 дней / 6 ночей",
@@ -77,7 +77,7 @@ const hotTours = [
   { 
     name: "Горящий Таиланд", 
     destination: "Таиланд, Пхукет",
-    img: "/images/thailand.jpg", 
+    img: "/images/destinations/thailand.jpg", 
     price: "360 000 ₸",
     oldPrice: "470 000 ₸",
     days: "11 дней / 10 ночей",

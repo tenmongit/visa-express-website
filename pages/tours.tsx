@@ -11,7 +11,7 @@ const tours = [
   { 
     name: "Солнечная Турция", 
     destination: "Турция",
-    img: "/images/turkey.jpg", 
+    img: "/images/destinations/turkey.jpg", 
     price: "от 250 000 ₸",
     days: "7-14 дней",
     rating: 4.8,
@@ -21,7 +21,7 @@ const tours = [
   { 
     name: "Загадочный Египет", 
     destination: "Египет",
-    img: "/images/egypt.jpg", 
+    img: "/images/destinations/egypt.jpg", 
     price: "от 300 000 ₸",
     days: "7-10 дней",
     rating: 4.6,
@@ -31,7 +31,7 @@ const tours = [
   { 
     name: "Роскошные Эмираты", 
     destination: "ОАЭ",
-    img: "/images/uae.jpg", 
+    img: "/images/destinations/uae.jpg", 
     price: "от 330 000 ₸",
     days: "5-12 дней",
     rating: 4.9,
@@ -41,7 +41,7 @@ const tours = [
   { 
     name: "Экзотический Таиланд", 
     destination: "Таиланд",
-    img: "/images/thailand.jpg", 
+    img: "/images/destinations/thailand.jpg", 
     price: "от 380 000 ₸",
     days: "10-14 дней",
     rating: 4.7,
@@ -51,7 +51,7 @@ const tours = [
   { 
     name: "Солнечный Кипр", 
     destination: "Кипр",
-    img: "/images/cyprus.jpg", 
+    img: "/images/destinations/cyprus.jpg", 
     price: "от 350 000 ₸",
     days: "7-10 дней",
     rating: 4.5,
@@ -61,7 +61,7 @@ const tours = [
   { 
     name: "Классическая Греция", 
     destination: "Греция",
-    img: "/images/greece.jpg", 
+    img: "/images/destinations/greece.jpg", 
     price: "от 320 000 ₸",
     days: "7-14 дней",
     rating: 4.7,
@@ -71,7 +71,7 @@ const tours = [
   { 
     name: "Испанские каникулы", 
     destination: "Испания",
-    img: "/images/spain.jpg", 
+    img: "/images/destinations/spain.jpg", 
     price: "от 410 000 ₸",
     days: "7-14 дней",
     rating: 4.8,
@@ -81,7 +81,7 @@ const tours = [
   { 
     name: "Итальянская классика", 
     destination: "Италия",
-    img: "/images/italy.jpg", 
+    img: "/images/destinations/italy.jpg", 
     price: "от 440 000 ₸",
     days: "7-10 дней",
     rating: 4.9,
