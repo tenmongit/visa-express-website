@@ -40,32 +40,67 @@ const ApplicationStepper = () => {
     }));
   };
   
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/api/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        country: formData.destination,
+        date_from: formData.departureDate,
+        date_to: formData.returnDate,
+        adults: formData.adults,
+        children: formData.children,
+        accommodation: formData.accommodation,
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        comment: formData.comment,
+      }),
+    });
+    if (response.ok) {
+      toast({
+        title: "Заявка отправлена",
+        description: "Наш менеджер свяжется с вами в ближайшее время",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setFormData({
+        destination: "",
+        departureDate: "",
+        returnDate: "",
+        adults: "2",
+        children: "0",
+        budget: "",
+        accommodation: "Отель 4-5*",
+        name: "",
+        phone: "",
+        email: "",
+        comment: ""
+      });
+      setActiveStep(0);
+    } else {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить заявку. Попробуйте позже.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  } catch (error) {
     toast({
-      title: "Заявка отправлена",
-      description: "Наш менеджер свяжется с вами в ближайшее время",
-      status: "success",
+      title: "Ошибка",
+      description: "Не удалось отправить заявку. Попробуйте позже.",
+      status: "error",
       duration: 5000,
       isClosable: true,
     });
-    // Сбросить форму и шаги
-    setFormData({
-      destination: "",
-      departureDate: "",
-      returnDate: "",
-      adults: "2",
-      children: "0",
-      budget: "",
-      accommodation: "Отель 4-5*",
-      name: "",
-      phone: "",
-      email: "",
-      comment: ""
-    });
-    setActiveStep(0);
-  };
+  }
+};
   
-  // Рендер шагов формы
+  // Render form steps
   const renderStep = (step: number) => {
     switch (step) {
       case 0:

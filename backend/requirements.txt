@@ -1,5 +1,10 @@
 Flask
 Flask-CORS
-Flask-SQLAlchemy
-psycopg2-binary
 Flask-Migrate
+Flask-SQLAlchemy
+flask-session
+openpyxl
+pandas
+psycopg2-binary
+pytest
+werkzeug

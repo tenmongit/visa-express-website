@@ -32,29 +32,54 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isClient, setIsClient] = useState(false);
   
-  // Это решит проблему гидратации, так как компонент будет рендериться только на клиенте
+  // This solves the hydration problem, since the component will only render on the client
   useEffect(() => {
     setIsClient(true);
   }, []);
   const router = useRouter();
   const toast = useToast();
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // В реальном приложении здесь будет запрос к API для аутентификации
-    // Для демонстрации просто перенаправляем на страницу профиля
-    toast({
-      title: "Вход выполнен успешно",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-    
-    router.push('/profile');
+    if (!email) {
+      toast({ title: 'Пожалуйста, введите email', status: 'error', duration: 4000 });
+      return;
+    }
+    if (!password) {
+      toast({ title: 'Пожалуйста, введите пароль', status: 'error', duration: 4000 });
+      return;
+    }
+    try {
+      const res = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
+      });
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem('admin_logged_in', '1');
+        toast({
+          title: 'Вход выполнен успешно',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        });
+        router.push('/profile');
+      } else {
+        toast({
+          title: data.error || 'Ошибка входа',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+        });
+      }
+    } catch {
+      toast({ title: 'Ошибка входа', status: 'error' });
+    }
   };
 
-  // Рендерим контент только на клиенте, чтобы избежать ошибок гидратации
+  // Render content only on the client to avoid hydration errors
   if (!isClient) {
     return (
       <Box minH="100vh" bg="gray.50">
@@ -81,16 +106,9 @@ export default function Login() {
             
             <form onSubmit={handleLogin}>
               <VStack spacing={4} align="stretch">
-                <FormControl>
-                  <FormLabel fontSize="sm" color="gray.600">Email</FormLabel>
-                  <Input 
-                    type="email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)} 
-                    placeholder="Введите ваш email"
-                    focusBorderColor="brand.500"
-                    required
-                  />
+                <FormControl id="email" isRequired>
+                  <FormLabel>Email</FormLabel>
+                  <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="Введите email" />
                 </FormControl>
                 
                 <FormControl>

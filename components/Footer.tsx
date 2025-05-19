@@ -7,10 +7,10 @@ const MotionBox = motion(Box);
 export default function Footer() {
   return (
     <Box as="footer" bg="#eaf1fb" borderTop="1px" borderColor="gray.200" mt={16}>
-      {/* Основной контент футера */}
+      {/* Main footer content */}
       <Box maxW="1400px" mx="auto" px={{ base: 4, md: 8 }} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8} mb={10}>
-          {/* Колонка 1: Туры */}
+          {/* Column 1: Tours */}
           <VStack align="start" spacing={4}>
             <Heading size="md" color="brand.600" mb={2}>Туры</Heading>
             <Link href="/tours" color="gray.600" _hover={{ color: "brand.500" }}>Все туры</Link>

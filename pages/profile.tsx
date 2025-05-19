@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Box, 
   Container, 
@@ -38,7 +38,7 @@ import {
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-// Компонент элемента бокового меню
+// Sidebar menu item component
 interface SidebarItemProps {
   icon: React.ElementType;
   text: string;
@@ -74,101 +74,101 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState('profile');
   const [orderFilter, setOrderFilter] = useState('active');
   
-  // Данные пользователя (в реальном приложении будут загружаться с сервера)
-  const userData = {
-    name: 'Мадияр',
-    surname: 'Мустафин',
-    email: 'iluvtravel@gmail.com',
-    phone: '+7 778 308-84-30'
-  };
+  const [userData, setUserData] = useState<any | null>(null);
+  useEffect(() => {
+    fetch('http://localhost:5000/api/me', { credentials: 'include' })
+      .then(res => res.json())
+      .then(data => setUserData(data));
+  }, []);
   
-  // Функция для отображения активного раздела
+  // Function to render the active section
   const renderActiveSection = () => {
     switch(activeTab) {
       case 'profile':
         return (
           <Box bg="white" p={6} borderRadius="lg" boxShadow="sm">
             <Heading size="md" mb={6}>Настройка профиля</Heading>
-            
-            <Flex direction={{ base: 'column', md: 'row' }} mb={8}>
-              <Box mr={{ base: 0, md: 8 }} mb={{ base: 6, md: 0 }} width={{ base: "100%", md: "auto" }}>
-                {/* Аватар в стиле kaztour */}
-                <Flex direction="column" align="center" justify="center">
-                  <Avatar 
-                    size="2xl" 
-                    name={`${userData.name} ${userData.surname}`} 
-                    bg="#6b0f6b"
-                    color="white"
-                    mb={4}
-                  />
-                  <Text fontSize="sm" color="gray.500" mb={2}>
-                    JPG или PNG до 800 KB
-                  </Text>
-                  <Button 
-                    leftIcon={<FaCamera />} 
-                    size="sm" 
-                    colorScheme="blue" 
-                    width={{ base: "100%", md: "auto" }}
-                  >
-                    Добавить фото
-                  </Button>
-                </Flex>
-              </Box>
-              
-              <Box flex="1">
-                <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
-                  <Box>
-                    <Text fontWeight="medium" mb={2}>Имя</Text>
-                    <Input 
-                      value={userData.name} 
-                      focusBorderColor="blue.500"
-                      bg="white"
-                      borderColor="gray.300"
-                      size="lg"
-                    />
-                  </Box>
-                  
-                  <Box>
-                    <Text fontWeight="medium" mb={2}>Фамилия</Text>
-                    <Input 
-                      value={userData.surname} 
-                      focusBorderColor="blue.500"
-                      bg="white"
-                      borderColor="gray.300"
-                      size="lg"
-                    />
-                  </Box>
-                  
-                  <Box>
-                    <Text fontWeight="medium" mb={2}>Email</Text>
-                    <Input 
-                      value={userData.email} 
-                      focusBorderColor="blue.500"
-                      bg="white"
-                      borderColor="gray.300"
-                      size="lg"
-                    />
-                  </Box>
-                  
-                  <Box>
-                    <Text fontWeight="medium" mb={2}>Телефон</Text>
-                    <Input 
-                      value={userData.phone} 
-                      focusBorderColor="blue.500"
-                      bg="white"
-                      borderColor="gray.300"
-                      size="lg"
-                    />
-                  </Box>
-                </Grid>
-              </Box>
-            </Flex>
-            
-            <Flex justify="flex-end" mt={6}>
-              <Button colorScheme="blue" leftIcon={<FaCheck />} size="md">
-                Сохранить
-              </Button>
-            </Flex>
+            <Box>
+              {!userData ? (
+                <Text>Загрузка...</Text>
+              ) : userData.error ? (
+                <Text color="red.500">{userData.error}</Text>
+              ) : (
+                <>
+                  <Flex direction={{ base: 'column', md: 'row' }} mb={8}>
+                    <Box mr={{ base: 0, md: 8 }} mb={{ base: 6, md: 0 }} width={{ base: "100%", md: "auto" }}>
+                      {/* Аватар в стиле kaztour */}
+                      <Flex direction="column" align="center" justify="center">
+                        <Avatar 
+                          size="2xl" 
+                          name={userData.first_name + ' ' + userData.last_name} 
+                          mb={4} 
+                          src="/images/avatar-default.png" 
+                        />
+                        <Text fontWeight="bold" fontSize="xl">
+                          {userData.first_name} {userData.last_name}
+                        </Text>
+                        <Text color="gray.500">{userData.email}</Text>
+                        <Text color="gray.500">{userData.phone}</Text>
+                      </Flex>
+                    </Box>
+                    <Box flex="1">
+                      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={6}>
+                        <Box>
+                          <Text fontWeight="medium" mb={2}>Имя</Text>
+                          <Input 
+                            value={userData.first_name} 
+                            focusBorderColor="blue.500"
+                            bg="white"
+                            borderColor="gray.300"
+                            size="lg"
+                            readOnly
+                          />
+                        </Box>
+                        <Box>
+                          <Text fontWeight="medium" mb={2}>Фамилия</Text>
+                          <Input 
+                            value={userData.last_name} 
+                            focusBorderColor="blue.500"
+                            bg="white"
+                            borderColor="gray.300"
+                            size="lg"
+                            readOnly
+                          />
+                        </Box>
+                        <Box>
+                          <Text fontWeight="medium" mb={2}>Email</Text>
+                          <Input 
+                            value={userData.email} 
+                            focusBorderColor="blue.500"
+                            bg="white"
+                            borderColor="gray.300"
+                            size="lg"
+                            readOnly
+                          />
+                        </Box>
+                        <Box>
+                          <Text fontWeight="medium" mb={2}>Телефон</Text>
+                          <Input 
+                            value={userData.phone} 
+                            focusBorderColor="blue.500"
+                            bg="white"
+                            borderColor="gray.300"
+                            size="lg"
+                            readOnly
+                          />
+                        </Box>
+                      </Grid>
+                    </Box>
+                  </Flex>
+                </>
+              )}
+              <Flex justify="flex-end" mt={6}>
+                <Button colorScheme="blue" leftIcon={<FaCheck />} size="md">
+                  Сохранить
+                </Button>
+              </Flex>
+            </Box>
           </Box>
         );
         
@@ -273,12 +273,12 @@ export default function Profile() {
               <Flex align="center" mb={6}>
                 <Avatar 
                   size="md" 
-                  name={`${userData.name} ${userData.surname}`} 
+                  name={userData ? `${userData.first_name || ''} ${userData.last_name || ''}` : ''} 
                   mr={3}
                 />
                 <Box>
-                  <Text fontWeight="medium">{userData.name} {userData.surname}</Text>
-                  <Text fontSize="sm" color="gray.500">{userData.email}</Text>
+                  <Text fontWeight="medium">{userData ? `${userData.first_name || ''} ${userData.last_name || ''}` : ''}</Text>
+                  <Text fontSize="sm" color="gray.500">{userData ? userData.email : ''}</Text>
                 </Box>
               </Flex>
               

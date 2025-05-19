@@ -2,7 +2,7 @@ import { Box, Heading, Text, Flex, Button, Link, Grid, GridItem, Badge, Image, I
 import { FaCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useState } from "react";
 
-// Типы для данных направлений
+// Types for destination data
 interface Destination {
   name: string;
   img: string;
@@ -11,7 +11,7 @@ interface Destination {
   featured?: boolean;
 }
 
-// Компонент карточки направления
+// Destination card component
 const DestinationCard = ({ destination }: { destination: Destination }) => {
   const isFeatured = destination.featured;
   
@@ -134,7 +134,7 @@ const DestinationCard = ({ destination }: { destination: Destination }) => {
   );
 };
 
-// Данные о направлениях
+// Destination data
 const destinations: Destination[] = [
   {
     name: "Турция",
@@ -179,11 +179,11 @@ const destinations: Destination[] = [
 export default function PopularDestinations() {
   const [showAll, setShowAll] = useState(false);
   
-  // Разделяем направления на избранные и обычные
+  // Split destinations into featured and regular
   const featuredDestinations = destinations.filter(d => d.featured);
   const regularDestinations = destinations.filter(d => !d.featured);
   
-  // Определяем, сколько обычных направлений показывать
+  // Determine how many regular destinations to show
   const visibleRegularDestinations = showAll ? regularDestinations : regularDestinations.slice(0, 4);
   
   return (
@@ -227,7 +227,7 @@ export default function PopularDestinations() {
           ))}
         </Grid>
         
-        {/* Кнопка показать еще */}
+        {/* Show more button */}
         {regularDestinations.length > 4 && (
           <Flex justify="center" mt={6}>
             <Button

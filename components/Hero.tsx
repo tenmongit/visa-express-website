@@ -2,7 +2,7 @@ import { Box, Heading, Text, Button, Stack, Container, Flex } from "@chakra-ui/r
 import { motion } from "framer-motion";
 import { FaPlane, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
-// Компоненты с анимацией
+// Animated components
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
@@ -20,7 +20,7 @@ export default function Hero() {
       position="relative"
       overflow="hidden"
     >
-      {/* Декоративные элементы */}
+      {/* Decorative elements */}
       <MotionBox
         position="absolute"
         top="-50px"

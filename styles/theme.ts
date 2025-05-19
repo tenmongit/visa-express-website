@@ -8,14 +8,14 @@ const theme = extendTheme({
       200: "#99c2ff",
       300: "#66a3ff",
       400: "#3385ff",
-      500: "#0066ff", // основной синий, как на kaztour.kz
+      500: "#0066ff", // main blue, like on kaztour.kz
       600: "#0052cc",
       700: "#003d99",
       800: "#002966",
       900: "#001433",
     },
     accent: {
-      500: "#ff9900", // оранжевый акцент
+      500: "#ff9900", // orange accent
     },
   },
   fonts: {

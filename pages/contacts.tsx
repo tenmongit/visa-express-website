@@ -25,22 +25,52 @@ export default function Contacts() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const response = await fetch('http://localhost:5000/api/contacts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      }),
+    });
+    if (response.ok) {
+      toast({
+        title: "Сообщение отправлено",
+        description: "Мы свяжемся с вами в ближайшее время",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+      });
+    } else {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить сообщение. Попробуйте позже.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  } catch (error) {
     toast({
-      title: "Сообщение отправлено",
-      description: "Мы свяжемся с вами в ближайшее время",
-      status: "success",
+      title: "Ошибка",
+      description: "Не удалось отправить сообщение. Попробуйте позже.",
+      status: "error",
       duration: 5000,
       isClosable: true,
     });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: ""
-    });
-  };
+  }
+};
 
   return (
     <Box>
