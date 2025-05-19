@@ -24,7 +24,6 @@ A modern web application for managing visa requests and tours.
    ```
 2. **Set up environment variables:**
    - Create a `.env` file (optional).
-   - Example: `DATABASE_URL=postgresql://postgres:root@localhost:5432/visa_express`
 3. **Run migrations:**
    ```bash
    flask db upgrade
@@ -64,8 +63,3 @@ A modern web application for managing visa requests and tours.
 - `/pages` - Next.js pages (frontend)
 - `/components` - React UI components
 - `/styles` - Theme and global styles
-
-## Contacts
-For support, contact info@visaexpress.kz
-
----
